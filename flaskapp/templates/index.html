@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Advisor Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <div class="text-center mb-4">
+                        <h4>Career Advisor</h4>
+                        <p class="text-muted">Ask Joe about your career path</p>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button id="clear-chat" class="btn btn-outline-danger">
+                            <i class="bi bi-trash"></i> Clear Conversation
+                        </button>
+                    </div>
+                    <hr>
+                    <div class="mt-4">
+                        <h6>About Joe</h6>
+                        <p class="small text-muted">
+                            Joe is an AI career coach created by AdAstra Careers. He provides career advice and guidance to help you make informed decisions about your professional path.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Chat with Joe</h1>
+                </div>
+
+                <!-- Chat container -->
+                <div class="chat-container" id="chat-container">
+                    {% if conversation %}
+                        {% for message in conversation %}
+                            <div class="message {{ 'user-message' if message.role == 'user' else 'ai-message' }}">
+                                <div class="message-content">
+                                    {{ message.content | safe }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="welcome-message">
+                            <h3>Welcome to Career Advisor!</h3>
+                            <p>Hi, I'm Joe, your AI career coach. How can I help you with your career today?</p>
+                            <p>Try asking me questions like:</p>
+                            <ul>
+                                <li>What careers are good for someone with a sociology degree?</li>
+                                <li>How can I transition from marketing to data science?</li>
+                                <li>What skills should I develop for a career in healthcare?</li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Input area -->
+                <div class="input-area">
+                    <form id="chat-form" class="d-flex">
+                        <input type="text" id="user-input" class="form-control" placeholder="Type your message here..." autocomplete="off">
+                        <button type="submit" class="btn btn-primary ms-2">
+                            <i class="bi bi-send"></i> Send
+                        </button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Loading spinner -->
+    <div id="loading-spinner" class="loading-spinner d-none">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Error toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="error-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger text-white">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="error-message">
+                An error occurred while processing your request.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html> 
