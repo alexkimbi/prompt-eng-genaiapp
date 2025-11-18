@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'dev-key-for-session')
 
 # API Gateway endpoint
-API_ENDPOINT = os.getenv('API_ENDPOINT', 'https://q58l7c6hw1.execute-api.us-east-1.amazonaws.com/default/genai-ui')
+API_ENDPOINT = os.getenv('API_ENDPOINT', 'https://eggisf2flj.execute-api.us-east-1.amazonaws.com/default/genai-app')
 
 @app.route('/')
 def index():
