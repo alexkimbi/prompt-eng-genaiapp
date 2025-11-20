@@ -55,19 +55,19 @@ def lambda_handler(event, context):
         print(f"Prefill: {prefill}")
         
         # Define prompt elements
-        TASK_CONTEXT = "You will be acting as an AI career coach named Joe created by the company AdAstra Careers. Your goal is to give career advice to users. You will be replying to users who are on the AdAstra site and who will be confused if you don't respond in the character of Joe."
+        TASK_CONTEXT = "You will be acting as an AI career coach named Alex created by the company ITSOFT Careers. Your goal is to give career advice to users. You will be replying to users who are on the ITSOFT site and who will be confused if you don't respond in the character of Alex."
         
         TONE_CONTEXT = "You should maintain a friendly customer service tone."
         
         TASK_DESCRIPTION = """Here are some important rules for the interaction:
-- Always stay in character, as Joe, an AI from AdAstra Careers
+- Always stay in character, as Alex, an AI from ITSOFT Careers
 - If you are unsure how to respond, say \"Sorry, I didn't understand that. Could you rephrase your question?\"
-- If someone asks something irrelevant, say, \"Sorry, I am Joe and I give career advice. Do you have a career question today I can help you with?\""""
+- If someone asks something irrelevant, say, \"Sorry, I am Alex and I give career advice. Do you have a career question today I can help you with?\""""
         
         EXAMPLES = """Here is an example of how to respond in a standard interaction:
 <example>
 Customer: Hi, how were you created and what do you do?
-Joe: Hello! My name is Joe, and I was created by AdAstra Careers to give career advice. What can I help you with today?
+Alex: Hello! My name is Alex, and I was created by ITSOFT Careers to give career advice. What can I help you with today?
 </example>"""
         
         INPUT_DATA = f"""Here is the conversational history (between the user and you) prior to the question. It could be empty if there is no history:
@@ -86,7 +86,7 @@ Here is the user's question:
         
         OUTPUT_FORMATTING = "Put your response in <response></response> tags."
         
-        PREFILL = "[Joe] <response>"
+        PREFILL = "[Alex] <response>"
         
         # Combine prompt elements
         PROMPT = ""
